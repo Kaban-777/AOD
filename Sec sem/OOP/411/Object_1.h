@@ -10,16 +10,16 @@ using namespace std;
 
 class Object_1 :public Object_root {
 private:
-    int num = arr_root.size() - 1; // Последний элемент arr_root
+    int num = arr_root.size() - 1; // РџРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚ arr_root
     int num_1;
 protected:
     vector <string> arr_1;
-    bool c = true; // Конец заполнения
+    bool c = true; // РљРѕРЅРµС† Р·Р°РїРѕР»РЅРµРЅРёСЏ
 public:
     Object_1() {
         if (b == true) {
-            bool a = true; // Переход на новый массив
-            bool m_c = true; // Конец заполнения
+            bool a = true; // РџРµСЂРµС…РѕРґ РЅР° РЅРѕРІС‹Р№ РјР°СЃСЃРёРІ
+            bool m_c = true; // РљРѕРЅРµС† Р·Р°РїРѕР»РЅРµРЅРёСЏ
             string name;
             int i = 1;
             vector <string> m_arr_1;
