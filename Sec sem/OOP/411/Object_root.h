@@ -10,11 +10,11 @@ using namespace std;
 class Object_root {
 protected:
     vector <string> arr_root;
-    bool b; // Конец заполнения
+    bool b; // РљРѕРЅРµС† Р·Р°РїРѕР»РЅРµРЅРёСЏ
 public:
     Object_root() {
-        bool a = true; // Переход на новый массив
-        bool m_b = true; // Конец заполнения
+        bool a = true; // РџРµСЂРµС…РѕРґ РЅР° РЅРѕРІС‹Р№ РјР°СЃСЃРёРІ
+        bool m_b = true; // РљРѕРЅРµС† Р·Р°РїРѕР»РЅРµРЅРёСЏ
         string name;
         int i = 0;
         vector <string> m_arr_root;
