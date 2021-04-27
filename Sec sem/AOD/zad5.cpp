@@ -45,6 +45,9 @@ public:
 	//перестановка первых к элементов в конец
 	void move_back(int k);
 
+	//переставление местами самой малой переменной с самой большой
+	void change();
+
 private:
 
 
@@ -217,9 +220,22 @@ void List<T>::pop_back()
 template<typename T>
 void List<T>::move_back(int k) {
 	for (int i = 0; i < k; i++) {
-		push_back(operator[](i);)
+		push_back(operator[](i));
+	}
+	for (int i = 0; i < k; i++) {
+		pop_front();
 	}
 
+}
+
+template<typename T>
+void List<T>::change() {
+	float temp = head;
+	Node<T>* current = this->head;
+	while (size) {
+		if(temp<data)
+
+	}
 }
 
 
@@ -230,10 +246,13 @@ int main()
 	setlocale(LC_ALL, "ru");
 
 
-	List<int> lst;
-	lst.push_front(5);
-	lst.push_front(7);
-	lst.push_front(101);
+	List<float> lst;
+	lst.push_front(5.0);
+	lst.push_front(7.0);
+	lst.push_front(101.0);
+	lst.push_front(20.0);
+	lst.push_front(76.0);
+	lst.push_front(45.0);
 
 	for (int i = 0; i < lst.GetSize(); i++)
 	{
@@ -242,7 +261,8 @@ int main()
 
 	cout << endl << "pop_back " << endl << endl;
 
-	lst.pop_back();
+	lst.move_back(3); // перестановка первых к элемнтов в конец
+	lst.removeAt(lst.GetSize() - 2); // удаление предпоследнего элемента
 
 	for (int i = 0; i < lst.GetSize(); i++)
 	{
