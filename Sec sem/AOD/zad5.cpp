@@ -230,12 +230,23 @@ void List<T>::move_back(int k) {
 
 template<typename T>
 void List<T>::change() {
-	float temp = head;
-	Node<T>* current = this->head;
-	while (size) {
-		if(temp<data)
-
+	float max = operator[](0);
+	float min = operator[](0);
+	int imax, imin;
+	for (int i = 0; i < GetSize(); i++) {
+		if (max < operator[](i)) {
+			max = operator[](i);
+			imax = i;
+		}
+		if (min > operator[](i)) {
+			min = operator[](i);
+			imin = i;
+		}
 	}
+	insert(max, imin);
+	removeAt(imin + 1);
+	insert(min, imax);
+	removeAt(imax + 1);
 }
 
 
@@ -259,10 +270,13 @@ int main()
 		cout << lst[i] << endl;
 	}
 
-	cout << endl << "pop_back " << endl << endl;
+	cout << endl;
 
-	lst.move_back(3); // перестановка первых к элемнтов в конец
-	lst.removeAt(lst.GetSize() - 2); // удаление предпоследнего элемента
+	//lst.move_back(3); // перестановка первых k элемнтов в конец
+	//lst.removeAt(lst.GetSize() - 2); // удаление предпоследнего элемента
+	//lst.change(); // переставление местами самой малой переменной с самой большой
+
+	cout << endl;
 
 	for (int i = 0; i < lst.GetSize(); i++)
 	{
