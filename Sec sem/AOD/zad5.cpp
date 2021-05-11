@@ -269,20 +269,44 @@ int main()
 	{
 		cout << lst[i] << endl;
 	}
+	
+	char f, a;
+	
+	while (1) {
 
-	cout << endl;
+		cout << endl;
+		cout << "Выберите команду для программы:" << endl << "(1) - перестановка первых k элемнтов в конец" << endl << "(2) - удаление предпоследнего элемента" << endl << "(3) - переставление местами самой малой переменной с самой большой" << endl;
+		cin >> f;
 
-	//lst.move_back(3); // перестановка первых k элемнтов в конец
-	//lst.removeAt(lst.GetSize() - 2); // удаление предпоследнего элемента
-	//lst.change(); // переставление местами самой малой переменной с самой большой
+		switch (f) {
+		case '1':
+			cout << "\nВведите количество элементов k\n";
+			int k;
+			cin >> k;
+			lst.move_back(k);
+			break;
+		case '2':
+			lst.removeAt(lst.GetSize() - 2);
+			break;
+		case '3':
+			lst.change();
+			break;
+		}
 
-	cout << endl;
+		cout << endl;
 
-	for (int i = 0; i < lst.GetSize(); i++)
-	{
-		cout << lst[i] << endl;
+		for (int i = 0; i < lst.GetSize(); i++)
+		{
+			cout << lst[i] << endl;
+		}
+		
+		cout << endl;
+
+		cout << "Вы хотите продолжить работу со списком? y/n\n";
+		cin >> a;
+		if (a == 'n')
+			break;
 	}
-
 
 	return 0;
 }
