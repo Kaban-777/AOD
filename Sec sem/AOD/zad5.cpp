@@ -265,47 +265,88 @@ int main()
 	lst.push_front(76.0);
 	lst.push_front(45.0);
 
+	cout << "Список чисел с плавающей точкой:\n\n";
+
 	for (int i = 0; i < lst.GetSize(); i++)
 	{
 		cout << lst[i] << endl;
 	}
-	
+
 	char f, a;
-	
+
 	while (1) {
 
 		cout << endl;
-		cout << "Выберите команду для программы:" << endl << "(1) - перестановка первых k элемнтов в конец" << endl << "(2) - удаление предпоследнего элемента" << endl << "(3) - переставление местами самой малой переменной с самой большой" << endl;
+		cout << "Выберите команду для программы:" << endl << "(1) - перестановка первых k элемнтов в конец" << endl << "(2) - удаление предпоследнего элемента" << endl << "(3) - переставление местами самой малой переменной с самой большой" << endl << "(4) - удаление последнего элемента в списке\n(5) - добавление элемента в конец списка\n(6) - удаление элемента по индексу\n(7) - очистка списка";
+		cout << endl << "\nВведите n для окончания работы" << endl;
 		cin >> f;
+		if (f == 'n')
+			break;
 
-		switch (f) {
-		case '1':
-			cout << "\nВведите количество элементов k\n";
-			int k;
-			cin >> k;
-			lst.move_back(k);
-			break;
-		case '2':
-			lst.removeAt(lst.GetSize() - 2);
-			break;
-		case '3':
-			lst.change();
-			break;
+		if (f < '8' && f > '0') {
+			switch (f) {
+			case '1':
+				cout << "\nВведите количество элементов k, не большее чем: " << lst.GetSize() - 1 << endl;
+				int k;
+				cin >> k;
+				if (k == 'n')
+					break;
+				if (!isdigit(k))
+					break;
+				if (k < lst.GetSize() && k > 0) {
+					lst.move_back(k);
+				}
+				else
+					cout << "\nВы ввели неверное значение.\n";
+				break;
+			case '2':
+				lst.removeAt(lst.GetSize() - 2);
+				break;
+			case '3':
+				lst.change();
+				break;
+			case '4':
+				lst.pop_back();
+				break;
+			case '5':
+				cout << "\nВведите желаемое число с плавающей точкой, для добавления в список:\n";
+				float j;
+				cin >> j;
+				if (j == 'n')
+					break;
+				if (isdigit(j))
+					lst.push_back(j);
+				else
+					cout << "\nВы ввели неверное значение.\n";
+				break;
+			case '6':
+				cout << "\nВведите какой элемент вы хотите удалить, начиная с первого.\n";
+				int h;
+				cin >> h;
+				if (h == 'n')
+					break;
+				if (h < lst.GetSize() && h > 0)
+					lst.removeAt(h - 1);
+				else
+					cout << "\nВы ввели неверное значение.\n";
+				break;
+			case '7':
+				lst.clear();
+			}
+
+			cout << endl;
+
+			cout << "Список чисел с плавающей точкой:\n\n";
+
+			for (int i = 0; i < lst.GetSize(); i++)
+			{
+				cout << lst[i] << endl;
+			}
+
+			cout << endl;
 		}
-
-		cout << endl;
-
-		for (int i = 0; i < lst.GetSize(); i++)
-		{
-			cout << lst[i] << endl;
-		}
-		
-		cout << endl;
-
-		cout << "Вы хотите продолжить работу со списком? y/n\n";
-		cin >> a;
-		if (a == 'n')
-			break;
+		else
+			cout << "\nВы ввели неверное значение.\n";
 	}
 
 	return 0;
