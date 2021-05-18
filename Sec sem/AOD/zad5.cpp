@@ -264,6 +264,12 @@ int main()
 	lst.push_front(20.0);
 	lst.push_front(76.0);
 	lst.push_front(45.0);
+	lst.push_front(3.0);
+	lst.push_front(77.0);
+	lst.push_front(111.0);
+	lst.push_front(26.0);
+	lst.push_front(87.0);
+	lst.push_front(90.0);
 
 	cout << "Список чисел с плавающей точкой:\n\n";
 
@@ -281,57 +287,113 @@ int main()
 		cout << endl << "\nВведите n для окончания работы" << endl;
 		cin >> f;
 		if (f == 'n')
-			break;
+			return 0;
 
 		if (f < '8' && f > '0') {
+			char str[10], * chk = str;
+			bool t = true;
+			int k = 0;
+			float j = 0;
 			switch (f) {
 			case '1':
-				cout << "\nВведите количество элементов k, не большее чем: " << lst.GetSize() - 1 << endl;
-				int k;
-				cin >> k;
-				if (k == 'n')
+				if (lst.GetSize() < 2) {
+					cout << "\nРазмеры списка не позволяют провести данную операцию.\n";
 					break;
-				if (!isdigit(k))
-					break;
-				if (k < lst.GetSize() && k > 0) {
-					lst.move_back(k);
 				}
-				else
-					cout << "\nВы ввели неверное значение.\n";
+				t = true;		
+				cout << "\nВведите количество элементов k, не большее чем: " << lst.GetSize() - 1 << endl;
+				cin >> str;
+				if (*chk == 'n')
+					return 0;
+				while (*chk) {
+					if (!isdigit(*chk++)) {
+						cout << "\nВы ввели неверное значение.\n";
+						t = false;
+						break;
+					}
+				}
+				if (t) {
+					k = atoi(str);
+					if (k < lst.GetSize() && k > 0) {
+						lst.move_back(k);
+					}
+					else
+						cout << "\nВы ввели неверное значение.\n";
+				}
 				break;
 			case '2':
-				lst.removeAt(lst.GetSize() - 2);
+				if(lst.GetSize() > 1)
+					lst.removeAt(lst.GetSize() - 2);
+				else
+					cout << "\nРазмеры списка не позволяют провести данную операцию.\n";
 				break;
 			case '3':
-				lst.change();
+				if (lst.GetSize() > 1)
+					lst.change();
+				else
+					cout << "\nРазмеры списка не позволяют провести данную операцию.\n";
 				break;
 			case '4':
-				lst.pop_back();
+				if (lst.GetSize() > 0)
+					lst.pop_back();
+				else
+					cout << "\nРазмеры списка не позволяют провести данную операцию.\n";
 				break;
 			case '5':
+				t = true;
+				k = 0;
 				cout << "\nВведите желаемое число с плавающей точкой, для добавления в список:\n";
-				float j;
-				cin >> j;
-				if (j == 'n')
+				cin >> str;
+				if (*chk == 'n')
+					return 0;
+				while (*chk) {
+					if (!isdigit(*chk) && *chk != '.') {
+						cout << "\nВы ввели неверное значение.\n";
+						t = false;
+						break;
+					}
+					*chk++;
+					k++;
+				}
+				if (k > 6) {
+					cout << "\nВведите число, содержащее меньше символов.\n";
 					break;
-				if (isdigit(j))
+				}
+				if (t) {
+					string js = string(str);
+					stringstream ss(js);
+					ss >> j;
 					lst.push_back(j);
-				else
-					cout << "\nВы ввели неверное значение.\n";
+				}
 				break;
 			case '6':
-				cout << "\nВведите какой элемент вы хотите удалить, начиная с первого.\n";
-				int h;
-				cin >> h;
-				if (h == 'n')
+				t = true;
+				if (lst.GetSize() == 0) {
+					cout << "\nРазмеры списка не позволяют провести данную операцию.\n";
 					break;
-				if (h < lst.GetSize() && h > 0)
-					lst.removeAt(h - 1);
-				else
-					cout << "\nВы ввели неверное значение.\n";
+				}
+				cout << "\nВведите какой элемент вы хотите удалить, начиная с первого.\n";
+				cin >> str;
+				if (*chk == 'n')
+					return 0;
+				while (*chk) {
+					if (!isdigit(*chk++)) {
+						cout << "\nВы ввели неверное значение.\n";
+						t = false;
+						break;
+					}
+				}
+				if (t) {
+					k = atoi(str);
+					if (k <= lst.GetSize() && k > 0)
+						lst.removeAt(k - 1);
+					else
+						cout << "\nВы ввели неверное значение.\n";
+				}
 				break;
 			case '7':
 				lst.clear();
+				break;
 			}
 
 			cout << endl;
@@ -347,6 +409,8 @@ int main()
 		}
 		else
 			cout << "\nВы ввели неверное значение.\n";
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	}
 
 	return 0;
