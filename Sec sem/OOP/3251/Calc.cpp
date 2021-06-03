@@ -75,7 +75,8 @@ int Calc::retur() {
         sum1(o1, x, n2);
     else
         sum1(o1, n1, n2);
-    j++;
+    if (j > 0)
+        cout << endl;
     return x;
 }
 
