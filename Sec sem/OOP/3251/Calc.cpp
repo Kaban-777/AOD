@@ -3,7 +3,8 @@
 
 using namespace std;
 
-Calc::Calc() {
+Calc::Calc(int m_j) {
+    j = m_j;
     if (j > 0) {
         cin >> o1;
         if (o1 == 'C')
@@ -70,7 +71,7 @@ void Calc::sum2(char o, int m_n1, int m_n2) {
 }
 
 int Calc::retur() {
-    if(j > 0)
+    if (j > 0)
         sum1(o1, x, n2);
     else
         sum1(o1, n1, n2);
