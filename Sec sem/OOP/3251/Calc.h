@@ -6,10 +6,9 @@ using namespace std;
 class Calc {
 private:
     char o1, o2, o3;
-    int n1, n2, n3, n4, x, i, j = 0
-        ;
+    int n1, n2, n3, n4, x, i, j;
 public:
-    Calc();
+    Calc(int m_j);
     void sum1(char o, int m_n1, int m_n2);
     void sum2(char o, int m_n1, int m_n2);
     int retur();
